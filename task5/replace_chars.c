@@ -2,32 +2,32 @@
 #include <stdlib.h>
 #include "utility.h"
 
-char* replace_chars(char *in) {
-    size_t l = strlen(in);
-    size_t len = l;
-    for (size_t i = 0; i < l; ++i) {
-        if (in[i] == '&') len += 4;
-        else if (in[i] == '<' || in[i] == '>') len += 3;
+char* replace_chars(char *input) {
+    size_t initial_len = strlen(input);
+    size_t new_len = initial_len;
+    for (size_t i = 0; i < initial_len; ++i) {
+        if (input[i] == '&') new_len += 4;
+        else if (input[i] == '<' || input[i] == '>') new_len += 3;
     }
-    char *out = malloc(len + 1);
-    if (out == NULL) return NULL;
+    char *output = malloc(new_len + 1);
+    if (output == NULL) return NULL;
 
     size_t pos = 0;
-    for (size_t i = 0; i < strlen(in); i++) {
-        if (in[i] == '&') {
-            strcpy(out + pos, "&amp;");
+    for (size_t i = 0; i < strlen(input); i++) {
+        if (input[i] == '&') {
+            strcpy(output + pos, "&amp;");
             pos += 5;
-        } else if (in[i] == '<') {
-            strcpy(out + pos, "&lt;");
+        } else if (input[i] == '<') {
+            strcpy(output + pos, "&lt;");
             pos += 4;
-        } else if(in[i] == '>') {
-            strcpy(out + pos, "&gt;");
+        } else if(input[i] == '>') {
+            strcpy(output + pos, "&gt;");
             pos += 4;
         } else {
-            out[pos++]=in[i];
+            output[pos++]=input[i];
         }
     }
 
-    out[pos] = '\0';
-    return out;
+    output[pos] = '\0';
+    return output;
 }
