@@ -26,5 +26,7 @@ char* replace_chars(char *s) {
             strncat(result, &s[i], 1);
         }
     }
+    free(result)
+
     return result;
 }
