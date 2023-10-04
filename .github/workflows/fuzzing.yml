@@ -28,5 +28,5 @@ jobs:
 
       - name: Run tests
         run: |
-          cd build/tests
-          ./utility_fuzzer_test -max_total_time=60  # Cancel fuzzing after 60 seconds
+          cd task5/build
+          ./tests/utility_fuzzer_test -max_total_time=60  # Cancel fuzzing after 60 seconds
