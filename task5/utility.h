@@ -2,10 +2,10 @@
 // Created by Aleksander Olsvik on 04.10.2023.
 //
 
-#include <string>
-using namespace std;
 #ifndef TASK5_UTILITY_H
 #define TASK5_UTILITY_H
+#include <string>
+using namespace std;
 
 string replace_chars(const string &s) {
     string new_string;
