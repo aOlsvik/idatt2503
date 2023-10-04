@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "utility.h"
 
-char* replace_chars(const char s[]) {
+char* replace_chars(char *s) {
     // Calculate the size of the input string s
     size_t size_of_s = strlen(s);
     size_t max_length = size_of_s * (strlen("&amp;")-1) + 1;
