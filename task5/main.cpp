@@ -7,10 +7,10 @@
 using namespace std;
 
 int main() {
-    string s1 = "Hei";
-    string s2 = "Hei <3";
-    string s3 = "Er 3 > 4?";
-    string s4 = "Hu & hei";
+    const char *s1 = "Hei";
+    const char *s2 = "Hei <3";
+    const char *s3 = "Er 3 > 4?";
+    const char *s4 = "Hu & hei";
 
     cout << s1 << " -> " << replace_chars(s1) << endl;
     cout << s2 << " -> " << replace_chars(s2) << endl;
