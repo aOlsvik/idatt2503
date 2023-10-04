@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup environment
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq git clang cmake
+
+      - name: Build the project
+        run: |
+          mkdir build
+          cd build
+          CC=clang cmake ..
+          make
+
+      - name: Run tests
+        run: |
+          cd build/tests
+          ./utility_fuzzer_test -max_total_time=60  # Cancel fuzzing after 60 seconds
