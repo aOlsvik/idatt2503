@@ -20,7 +20,7 @@ jobs:
 
       - name: Build the project
         run: |
-          cd build
+          cd task5/build
           CC=clang cmake ..
           make
 
