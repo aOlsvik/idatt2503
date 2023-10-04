@@ -1,4 +1,4 @@
-#include "utility.h"
+#include "../utility.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,7 +9,7 @@ int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
   memcpy(str, data, size);                             // Copy fuzzer data to string
   str[size] = '\0';                                    // Set last byte of allocated string to '\0'
 
-  is_capital_of_norway(str);
+  replace_chars(str);
 
   free(str);
 
