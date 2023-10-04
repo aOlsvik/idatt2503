@@ -20,7 +20,7 @@ char* replace_chars(const char s[]) {
     result[0] = '\0';
     // characters to be replaced: &, <, > with &amp;, &lt;, &gt;
     // Write rest of function to replace characters and increase length of result
-    for(int i = 0; i<size_of_s; i++){
+    for(size_t i = 0; i<size_of_s; i++){
         if(s[i] == '&'){
             strcat(result, "&amp;");
         } else if(s[i] == '<'){
