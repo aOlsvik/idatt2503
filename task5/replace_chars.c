@@ -23,12 +23,7 @@ char* replace_chars(char *s) {
         } else if(s[i] == '>'){
             strcat(result, "&gt;");
         } else {
-            if (strlen(result) + 1 < max_length) {
-                strncat(result, &s[i], 1);
-            } else {
-                // Handle the case where the buffer is full
-                break;
-            }
+            strncat(result, &s[i], 1);
         }
     }
     free(result);
