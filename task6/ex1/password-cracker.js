@@ -10,24 +10,34 @@ function passcrack(){
 
   //nothing found up until i = 2, set start = 3
 
-  for(let i = 3; i<26; i++){
+  for(let i = 0; i<52; i++){
     console.log(i)
-    for(let j = 0; j<26; j++){
-        for(let k=0; k<26; k++){
-          for(let l=0; l<26; l++){
-            for(let m=0; m<26; m++){
-              password = String.fromCharCode(97+i, 97+j, 97+k, 97+l, 97+m)
-              const hash = crypto.pbkdf2Sync(password, salt, iterations, keylen, digest).toString('hex')
-              if(hash == key){
-                console.log("Password found: " + password)
-                return
-              }
-            }
-          }
+    for(let j = 0; j<52; j++){
+        for(let k=0; k<52; k++){
+          password = getCharacter(i) + getCharacter(j) + getCharacter(k)
+          const hash = crypto.pbkdf2Sync(password, salt, iterations, keylen, digest).toString('hex')
+          if(hash == key){
+            console.log("Password found: " + password)
+            return
+          }    
         }
     }
   }
   console.log("Password not found")
+}
+
+function getCharacter(n){
+  if(n<10){
+    return String.fromCharCode(48+n)
+  }
+  else if(n<26){
+    return String.fromCharCode(97+n)
+  } 
+  else if(n<52){
+    return String.fromCharCode(65+n-26)
+  }
+  else throw "n must be between 0 and 51"
+
 }
 
 passcrack()
