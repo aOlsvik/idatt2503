@@ -2,6 +2,7 @@
 const crypto = require('crypto')
 const express = require('express')
 const path = require('path')
+const jwt = require('jsonwebtoken')
 
 const app = express();
 const PORT = 3000;
@@ -16,11 +17,20 @@ app.listen(PORT, () => {
 
 app.post('/login', (req, res) => {
   const data = req.body
-  console.log(data)
-  // Get the secret key from the password
+  // assuming getSecretKey checks if the password is correct
   getSecretKey(data.password).then((secretKey) => {
-    res.json({secretKey: secretKey})
+    res.json({jwt: getJWT(data.username)})
   })
+})
+
+app.get('/secret', (req, res) => {
+  const token = req.headers.authorization.split(' ')[1]
+  if(!token) {
+    res.status(401).send('Unauthorized')
+  }
+  else {
+    res.status(200).send('This is the secret message')
+  }
 })
 
 // Define a secret key for encryption and decryption
@@ -36,4 +46,15 @@ function getSecretKey(passwordhash){
       resolve(derivedKey.toString('hex'))
     })
   })
+}
+
+function getJWT(username){
+  const secret_key = 'server-secret-key-plz-dont-share'
+  const payload = {
+    username: username
+  }
+  const options = {
+    expiresIn: '1h'
+  }
+  return jwt.sign(payload, secret_key, options)
 }

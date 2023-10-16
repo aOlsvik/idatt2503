@@ -8,7 +8,6 @@ function passcrack(){
   const keylen = key.length / 2
   const digest = 'sha1'
 
-  //nothing found up until i = 2, set start = 3
 
   for(let i = 0; i<52; i++){
     console.log(i)
